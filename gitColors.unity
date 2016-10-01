@@ -222,6 +222,11 @@ MonoBehaviour:
   bullet: {fileID: 1758540521}
   yPosition: -3.25
   ship: {fileID: 633190558}
+  time: 0.5
+  sp1: {fileID: 21300000, guid: a618d9adf7602114b81625b90c7a75c0, type: 3}
+  sp2: {fileID: 21300000, guid: aa1ffeef1c0035d4ea8871bc8a78ceb1, type: 3}
+  sp3: {fileID: 21300000, guid: cb85daedffe94e643b4cf47348868a88, type: 3}
+  sp4: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!212 &633190561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -388,6 +393,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  time: 0.5
+  sp1: {fileID: 21300000, guid: cb85daedffe94e643b4cf47348868a88, type: 3}
+  sp2: {fileID: 21300000, guid: aa1ffeef1c0035d4ea8871bc8a78ceb1, type: 3}
+  sp3: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  sp4: {fileID: 21300000, guid: a618d9adf7602114b81625b90c7a75c0, type: 3}
+  shipNum: 0
 --- !u!1 &2005184245
 GameObject:
   m_ObjectHideFlags: 0
