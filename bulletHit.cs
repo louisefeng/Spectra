@@ -3,22 +3,12 @@ using System.Collections;
 
 public class bulletHit : MonoBehaviour {
 
-	public GameObject collisionItem;
-
-	void OnCollisionEnter (Collision col) {
-		if (col.gameObject.name == "Bullet") {
+	void OnCollisionEnter2D (Collision2D col) {
+		//print (col.gameObject.name);
+		//print (collisionItem.name);
+		if (col.gameObject.name == "Bullet(Clone)") {
 			Destroy (col.gameObject);
 		}
 	}
 
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
