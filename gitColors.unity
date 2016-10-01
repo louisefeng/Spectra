@@ -296,7 +296,6 @@ GameObject:
   - 50: {fileID: 1758540525}
   - 61: {fileID: 1758540524}
   - 114: {fileID: 1758540526}
-  - 114: {fileID: 1758540527}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -311,7 +310,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758540521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 15, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2045600904}
@@ -388,19 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f4477837b465340be8b93d2c2861db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
---- !u!114 &1758540527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1758540521}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2ec22bbd5ebb8048a34c1c5d6da4773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionItem: {fileID: 2005184245}
+  speed: 3
 --- !u!1 &2005184245
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,9 +519,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.9913444, y: 0.37243876}
+  m_Offset: {x: 1.5027533, y: 0.37243876}
   serializedVersion: 2
-  m_Size: {x: 0.4084795, y: 0.25512248}
+  m_Size: {x: 0.58482784, y: 0.25512248}
 --- !u!114 &2005184253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +600,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2045600902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
