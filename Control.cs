@@ -9,7 +9,8 @@ public class Control : MonoBehaviour {
 	public GameObject bullet;
 	public float yPosition;
 	public GameObject ship;
-	public double time;
+	public double shootTime;
+	public double switchTime;
 	private double bulletNextTime;
 	private double shipNextTime;
 	public Sprite sp1;
@@ -37,12 +38,12 @@ public class Control : MonoBehaviour {
 		move.velocity = moving * speed;
 
 		if (Input.GetButton ("Fire1") && Time.time > bulletNextTime) {
-			bulletNextTime = Time.time + time;
+			bulletNextTime = Time.time + shootTime;
 			Instantiate (bullet, new Vector3 (ship.transform.position.x, yPosition, 0), new Quaternion());
 		}
 
 		if (Input.GetButton("colorChange") && Time.time > shipNextTime) {
-			shipNextTime = Time.time + time;
+			shipNextTime = Time.time + switchTime;
 			shipNum = (shipNum + 1) % 4;
 			switch (shipNum) {
 				case 0:

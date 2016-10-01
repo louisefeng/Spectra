@@ -5,7 +5,7 @@ public class Shoot : MonoBehaviour {
 	public float speed;
 	private Rigidbody2D move;
 	public static GameObject collisionItem;
-	public double time;
+	public double switchTime;
 	private double nextTime;
 	public Sprite sp1;
 	public Sprite sp2;
@@ -35,7 +35,7 @@ public class Shoot : MonoBehaviour {
 		move.velocity = moving * speed;
 	
 		if (Input.GetButton("colorChange") && Time.time > nextTime) {
-			nextTime = Time.time + time;
+			nextTime = Time.time + switchTime;
 			shipNum = (shipNum + 1) % 4;
 			switch (shipNum) {
 			case 0:
