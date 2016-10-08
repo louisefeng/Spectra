@@ -19,14 +19,6 @@ public class Shoot : MonoBehaviour {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		move = GetComponent<Rigidbody2D> ();
 	}
-
-	public class BulletHit : MonoBehaviour {
-		void OnCollisionEnter (Collision col) {
-			if (col.gameObject.name == "Background") {
-				Destroy(col.gameObject);
-			}
-		}
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,15 +32,19 @@ public class Shoot : MonoBehaviour {
 			switch (shipNum) {
 			case 0:
 				spriteRenderer.sprite = sp1;
+				spriteRenderer.sortingLayerName = "0";
 				break;
 			case 1:
 				spriteRenderer.sprite = sp2;
+				spriteRenderer.sortingLayerName = "1";
 				break;
 			case 2:
 				spriteRenderer.sprite = sp3;
+				spriteRenderer.sortingLayerName = "2";
 				break;
 			case 3:
 				spriteRenderer.sprite = sp4;
+				spriteRenderer.sortingLayerName = "3";
 				break;
 			}
 		}

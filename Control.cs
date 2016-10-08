@@ -22,6 +22,9 @@ public class Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		//print (ship.tag);
+		//print (ship.name);
 		
 		shipNum = 0;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -46,18 +49,22 @@ public class Control : MonoBehaviour {
 			shipNextTime = Time.time + switchTime;
 			shipNum = (shipNum + 1) % 4;
 			switch (shipNum) {
-				case 0:
-					spriteRenderer.sprite = sp1;
-					break;
-				case 1:
-					spriteRenderer.sprite = sp2;
-					break;
-				case 2:
-					spriteRenderer.sprite = sp3;
-					break;
-				case 3:
-					spriteRenderer.sprite = sp4;
-					break;
+			case 0:
+				spriteRenderer.sprite = sp1;
+				spriteRenderer.sortingLayerName = "0";
+				break;
+			case 1:
+				spriteRenderer.sprite = sp2;
+				spriteRenderer.sortingLayerName = "1";
+				break;
+			case 2:
+				spriteRenderer.sprite = sp3;
+				spriteRenderer.sortingLayerName = "2";
+				break;
+			case 3:
+				spriteRenderer.sprite = sp4;
+				spriteRenderer.sortingLayerName = "3";
+				break;
 			}
 		}
 	}
