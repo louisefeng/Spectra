@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spawn : MonoBehaviour {
 	//public int[] total;
@@ -7,19 +8,39 @@ public class Spawn : MonoBehaviour {
     public int screenLimit;
 	private int maxEnemies = 20;
 	public movement enemy0;
+    public enemyShoot bullet0;
 	public movement enemy1;
-	public movement enemy2;
-	public movement enemy3;
-	private GameObject[] enemyList0 = new GameObject[20];
-	private GameObject[] enemyList1 = new GameObject[20];
-	private GameObject[] enemyList2 = new GameObject[20];
-	private GameObject[] enemyList3 = new GameObject[20];
+    public enemyShoot bullet1;
+    public movement enemy2;
+    public enemyShoot bullet2;
+    public movement enemy3;
+    public enemyShoot bullet3;
+    private static GameObject[] enemyList0 = new GameObject[20];
+	private static GameObject[] enemyList1 = new GameObject[20];
+	private static GameObject[] enemyList2 = new GameObject[20];
+	private static GameObject[] enemyList3 = new GameObject[20];
+    private static GameObject[] bulletList0 = new GameObject[200];
+    private static GameObject[] bulletList1 = new GameObject[200];
+    private static GameObject[] bulletList2 = new GameObject[200];
+    private static GameObject[] bulletList3 = new GameObject[200];
+    private List<movement> enemyTypes = new List<movement>(); 
+    private List<enemyShoot> bulletTypes = new List<enemyShoot>();
+    private GameObject[][] allEnemies = new GameObject[][] { enemyList0, enemyList1, enemyList2, enemyList3 };
+    private GameObject[][] allBullets = new GameObject[][] { bulletList0, bulletList1, bulletList2, bulletList3 };
 
 	public double delay0;
 	public double delay1;
 	public double delay2;
 	public double delay3;
-	public double spawnTime0;
+    public double shootTime0;
+    public double shootTime1;
+    public double shootTime2;
+    public double shootTime3;
+    private double shootingTime0;
+    private double shootingTime1;
+    private double shootingTime2;
+    private double shootingTime3;
+    public double spawnTime0;
 	public double spawnTime1;
 	public double spawnTime2;
 	public double spawnTime3;
@@ -36,9 +57,44 @@ public class Spawn : MonoBehaviour {
     private int spawns1;
     private int spawns2;
     private int spawns3;
+    private int shot0;
+    private int shot1;
+    private int shot2;
+    private int shot3;
+    private List<int> shotsTaken = new List<int>();
 
     // Use this for initialization
     void Start (){
+        enemyTypes.Add(enemy0);
+        enemyTypes.Add(enemy1);
+        enemyTypes.Add(enemy2);
+        enemyTypes.Add(enemy3);
+        bulletTypes.Add(bullet0);
+        bulletTypes.Add(bullet1);
+        bulletTypes.Add(bullet2);
+        bulletTypes.Add(bullet3);
+        shotsTaken.Add(shot0);
+        shotsTaken.Add(shot1);
+        shotsTaken.Add(shot2);
+        shotsTaken.Add(shot3);
+        for (int x = 0; x < 4; x++)
+        {
+            GameObject bullet = bulletTypes[x].gameObject;
+            GameObject enemy = enemyTypes[x].gameObject;
+            for (int y = 0; y < allEnemies[x].Length; y++)
+            {
+                GameObject tempEnemy = Instantiate(enemy, new Vector3(10, 10, 0), new Quaternion()) as GameObject;
+                tempEnemy.SetActive(false);
+                allEnemies[x][y] = tempEnemy;
+            }
+            for (int z = 0; z < allBullets[x].Length; z++)
+            {
+                GameObject tempBullet = Instantiate(bullet, new Vector3(10, 10, 0), new Quaternion()) as GameObject;
+                tempBullet.SetActive(false);
+                allBullets[x][z] = tempBullet;
+            }
+        }
+        /*
 		for (int x = 0; x < maxEnemies; x++) {
 			int y = 0;
 			GameObject enemy = enemy0.gameObject;
@@ -64,7 +120,27 @@ public class Spawn : MonoBehaviour {
 			tempEnemy.gameObject.SetActive (false);
 			enemyList3[x] = tempEnemy;
 		}
+        */
 	}
+
+    public GameObject[] allBull(int x)
+    {
+        if (x >= 0 && x <= 3)
+        {
+            return allBullets[x];
+        }
+        return null;
+    }
+
+
+    public GameObject[] allEnem(int x)
+    {
+        if (x >= 0 && x <= 3)
+        {
+            return allEnemies[x];
+        }
+        return null;
+    }
 
 	public void num(int x) {
 		switch(x) {
@@ -82,6 +158,21 @@ public class Spawn : MonoBehaviour {
 			break;
 		}
 	}
+
+    public void decrementShot(int x)
+    {
+        shotsTaken[x] -= 1;
+    }
+
+    public void incrementShot(int x)
+    {
+        shotsTaken[x] += 1;
+    }
+
+    public int returnShot(int x)
+    {
+        return shotsTaken[x];
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -89,7 +180,8 @@ public class Spawn : MonoBehaviour {
 			nextTime0 = Time.time + spawnTime0;
 			GameObject temp = enemyList0 [num0];
 			temp.transform.position = new Vector3(enemy0.startPosX, enemy0.startPosY, 0);
-            temp.transform.localScale.Scale(new Vector3(2, 2, 1));
+            temp.GetComponent<movement>().spawnTime = Time.time;
+            //temp.transform.localScale.Scale(new Vector3(2, 2, 1));
             temp.gameObject.SetActive (true);
 			num0 += 1;
             spawns0 += 1;

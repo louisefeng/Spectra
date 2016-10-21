@@ -7,8 +7,6 @@ public class bulletHit : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 
 	void OnTriggerEnter2D (Collider2D col) {
-		//print (col.gameObject.name);
-		//print (collisionItem.name);
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		bulletSpriteRenderer = col.gameObject.GetComponent<SpriteRenderer>();
 		if (col.gameObject.name == "Bullet(Clone)" 

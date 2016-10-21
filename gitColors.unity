@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  health: 5
+  worldHealth: 5
   bullet: {fileID: 1758540521}
   yPosition: -3.25
   ship: {fileID: 633190558}
@@ -261,7 +263,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 770685977
+  m_SortingLayerID: -970022279
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b0f92ec9ed7f8cc46aa9fcb9c47910ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -377,13 +379,21 @@ MonoBehaviour:
   max: 10
   screenLimit: 5
   enemy0: {fileID: 114000013275978952, guid: b1d3bf5a19971ac45afd5ff3f15da165, type: 2}
+  bullet0: {fileID: 114000013901272192, guid: eff3bfc5f42e6b64595889ba8b5d1142, type: 2}
   enemy1: {fileID: 114000012035678362, guid: f71d9b0cffa05fe4b931db0bd2fbe0f6, type: 2}
+  bullet1: {fileID: 114000013785500524, guid: 8ced21f8ab47d7d4fa64edc0e6f55fe5, type: 2}
   enemy2: {fileID: 114000014272391886, guid: 5f16e90b6af6fb94e9450a8d112268bb, type: 2}
+  bullet2: {fileID: 114000011395138528, guid: a49e913db324a04478372679e1238bcd, type: 2}
   enemy3: {fileID: 114000010127580316, guid: 0478a0fc519a81e45baec988de5f8f66, type: 2}
+  bullet3: {fileID: 114000013179179664, guid: 3e5937836aef3c34fbd0b98830cdc629, type: 2}
   delay0: 1
   delay1: 3
   delay2: 5
   delay3: 7
+  shootTime0: 3
+  shootTime1: 3
+  shootTime2: 3
+  shootTime3: 3
   spawnTime0: 3
   spawnTime1: 3
   spawnTime2: 3

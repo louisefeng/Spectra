@@ -5,6 +5,9 @@ public class Control : MonoBehaviour {
 
 	public float speed;
 
+    public int health;
+    public int worldHealth;
+
 	private Rigidbody2D move;
 	public GameObject bullet;
 	public float yPosition;
@@ -20,11 +23,11 @@ public class Control : MonoBehaviour {
 	private int shipNum;
 	private SpriteRenderer spriteRenderer;
 
+    private GameObject enemySpawns;
+    private Spawn enemySpawner;
+
 	// Use this for initialization
 	void Start () {
-
-		//print (ship.tag);
-		//print (ship.name);
 		
 		shipNum = 0;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -32,9 +35,32 @@ public class Control : MonoBehaviour {
 		move = GetComponent<Rigidbody2D> ();
 
 	}
+
+    public void beenHit()
+    {
+        health -= 1;
+    }
+
+    void Awake()
+    {
+        enemySpawns = GameObject.Find("EnemyGenerator");
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (health <= 0 || worldHealth <= 0) {
+            /*enemySpawner = enemySpawns.GetComponent<Spawn>();
+            for (int x = 0; x < 4; x++)
+            {
+                for (int y = 0; y < enemySpawner.allEnem(x).Length; y++)
+                {
+                    enemySpawner.allEnem(x)[y].gameObject.SetActive(false);
+                }
+            }
+            //trigger game over
+            */
+        }
 		
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		Vector2 moving = new Vector2 (moveHorizontal, 0);

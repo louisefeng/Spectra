@@ -21,9 +21,9 @@ GameObject:
   - 4: {fileID: 4000013476468006}
   - 212: {fileID: 212000012710013760}
   - 50: {fileID: 50000011647621788}
-  - 61: {fileID: 61000012017849490}
   - 114: {fileID: 114000012034626816}
   - 114: {fileID: 114000012035678362}
+  - 68: {fileID: 68000012532915752}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010050022584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -61,8 +61,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &61000012017849490
-BoxCollider2D:
+--- !u!68 &68000012532915752
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -73,8 +73,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.37}
+  m_Points:
+  - {x: -0.015202999, y: -0.1028716}
+  - {x: 0.030042112, y: -0.11058593}
+  - {x: 0.09389585, y: -0.046249032}
+  - {x: 0.09764876, y: 0.034971714}
+  - {x: 0.032805562, y: 0.10101688}
+  - {x: -0.027905345, y: 0.10856819}
+  - {x: -0.093925714, y: 0.038613856}
+  - {x: -0.09138456, y: -0.046239734}
+  - {x: -0.020178437, y: -0.11810303}
 --- !u!114 &114000012034626816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +108,7 @@ MonoBehaviour:
   speed: 2
   spawnTime: 5
   moveTime: 0.5
+  shootingTime: 3
   self: {fileID: 1000010050022584}
   startPosX: -4
   startPosY: 3
