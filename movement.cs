@@ -31,7 +31,7 @@ public class movement : MonoBehaviour {
 	public Vector2 direction;
 
 	private float yVal = 1;
-	public float xVal = 1;
+	private float xVal = 1;
 
 	private SpriteRenderer bulletSpriteRenderer;
 	private SpriteRenderer spriteRenderer;
