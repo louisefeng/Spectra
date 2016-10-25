@@ -180,7 +180,7 @@ public class Spawn : MonoBehaviour {
 			nextTime0 = Time.time + spawnTime0;
 			GameObject temp = enemyList0 [num0];
 			temp.transform.position = new Vector3(enemy0.startPosX, enemy0.startPosY, 0);
-            temp.GetComponent<movement>().spawnTime = Time.time;
+            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
             //temp.transform.localScale.Scale(new Vector3(2, 2, 1));
             temp.gameObject.SetActive (true);
 			num0 += 1;
@@ -190,7 +190,8 @@ public class Spawn : MonoBehaviour {
 			nextTime1 = Time.time + spawnTime1;
 			GameObject temp = enemyList1 [num1];
 			temp.transform.position = new Vector3 (enemy1.startPosX, enemy1.startPosY, 0);
-			temp.gameObject.SetActive (true);
+            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
+            temp.gameObject.SetActive (true);
 			num1 += 1;
             spawns1 += 1;
 		}
@@ -199,7 +200,8 @@ public class Spawn : MonoBehaviour {
 			nextTime2 = Time.time + spawnTime2;
 			GameObject temp = enemyList2 [num2];
 			temp.transform.position = new Vector3 (enemy2.startPosX, enemy2.startPosY, 0);
-			temp.gameObject.SetActive (true);
+            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
+            temp.gameObject.SetActive (true);
 			num2 += 1;
             spawns2 += 1;
 		}
@@ -208,7 +210,8 @@ public class Spawn : MonoBehaviour {
 			nextTime3 = Time.time + spawnTime3;
 			GameObject temp = enemyList3 [num3];
 			temp.transform.position = new Vector3 (enemy3.startPosX, enemy3.startPosY, 0);
-			temp.gameObject.SetActive (true);
+            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
+            temp.gameObject.SetActive (true);
 			num3 += 1;
             spawns3 += 1;
 		}

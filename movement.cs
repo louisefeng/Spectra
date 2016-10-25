@@ -8,7 +8,7 @@ public class movement : MonoBehaviour {
 	private Rigidbody2D move;
 
 	private double nextTime;
-	public double spawnTime;
+	private double spawnTime;
 	public double moveTime;
 	private double movingTime;
     public double shootingTime;
@@ -96,6 +96,17 @@ public class movement : MonoBehaviour {
         }
 	}
 
+    public void setSpawnTime(double x)
+    {
+        spawnTime = x;
+    }
+
+    public double getRandomShootingTime()
+    {
+        Random temp = new Random();
+        return shootingTime * Random.value;
+    }
+
 
 	//Box size limit: 5, bottom is -4 (because of player);
 
@@ -116,7 +127,7 @@ public class movement : MonoBehaviour {
 
         if (Time.time - spawnTime > shootTime)
         {
-            shootTime = Time.time + shootingTime;
+            shootTime = Time.time + (Random.value * shootingTime);
             int importantNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
             GameObject temp = reference.GetComponent<Spawn>().allBull(importantNum)[spawnReference.returnShot(importantNum)].gameObject;
             temp.transform.position = new Vector3(GetComponent<Transform>().position.x,

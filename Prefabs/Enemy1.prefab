@@ -106,9 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  spawnTime: 5
   moveTime: 0.5
-  shootingTime: 3
+  shootingTime: 2
   self: {fileID: 1000010050022584}
   startPosX: -4
   startPosY: 3

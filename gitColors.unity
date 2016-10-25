@@ -390,14 +390,14 @@ MonoBehaviour:
   delay1: 3
   delay2: 5
   delay3: 7
-  shootTime0: 3
+  shootTime0: 2
   shootTime1: 3
-  shootTime2: 3
+  shootTime2: 2
   shootTime3: 3
-  spawnTime0: 3
-  spawnTime1: 3
-  spawnTime2: 3
-  spawnTime3: 3
+  spawnTime0: 2
+  spawnTime1: 1
+  spawnTime2: 2
+  spawnTime3: 1
 --- !u!1 &1758540521
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758540521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -5, z: 0}
+  m_LocalPosition: {x: 12.88, y: -3.48, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -753,7 +753,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -872993623
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 51785c5d8ef3fdc44b8f1e4b679c04bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff5c6363cf66ac8409af6f14127c4078, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
