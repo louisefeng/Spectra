@@ -4,9 +4,9 @@ using System.Collections;
 public class movement : MonoBehaviour {
 	
 	public float speed;
-
 	private Rigidbody2D move;
 
+    //Each of these numbers it to help time every event that happens
 	private double nextTime;
 	private double spawnTime;
 	public double moveTime;
@@ -22,6 +22,7 @@ public class movement : MonoBehaviour {
 	public GameObject self;
 	private Collider2D selfCol;
 
+    //position stuff
 	public float startPosX;
 	public float startPosY;
 	private double yPos = 0;
@@ -30,6 +31,7 @@ public class movement : MonoBehaviour {
 
 	public Vector2 direction;
 
+    //used to determine if ship is moving left/right or up/down; yVal and xVal should only ever be -1 and 1
 	private float yVal = 1;
 	private float xVal = 1;
 

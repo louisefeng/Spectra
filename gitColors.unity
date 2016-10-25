@@ -390,10 +390,6 @@ MonoBehaviour:
   delay1: 3
   delay2: 5
   delay3: 7
-  shootTime0: 2
-  shootTime1: 3
-  shootTime2: 2
-  shootTime3: 3
   spawnTime0: 2
   spawnTime1: 1
   spawnTime2: 2

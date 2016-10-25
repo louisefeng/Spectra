@@ -15,6 +15,7 @@ public class Spawn : MonoBehaviour {
     public enemyShoot bullet2;
     public movement enemy3;
     public enemyShoot bullet3;
+    //our temporary limit on enemies is 20 of each type, maximum 200 bullets (these numbers can be changed)
     private static GameObject[] enemyList0 = new GameObject[20];
 	private static GameObject[] enemyList1 = new GameObject[20];
 	private static GameObject[] enemyList2 = new GameObject[20];
@@ -32,14 +33,6 @@ public class Spawn : MonoBehaviour {
 	public double delay1;
 	public double delay2;
 	public double delay3;
-    /*public double shootTime0;
-    public double shootTime1;
-    public double shootTime2;
-    public double shootTime3;
-    private double shootingTime0;
-    private double shootingTime1;
-    private double shootingTime2;
-    private double shootingTime3;*/
     public double spawnTime0;
 	public double spawnTime1;
 	public double spawnTime2;
@@ -49,18 +42,24 @@ public class Spawn : MonoBehaviour {
 	private double nextTime2;
 	private double nextTime3;
 
+
+    //num0-3 is to keep track of which enemy ship has been used
 	private int num0;
 	private int num1;
 	private int num2;
 	private int num3;
+    //spawns0-3 is to keep track of total enemies that have been produced
     private int spawns0;
     private int spawns1;
     private int spawns2;
     private int spawns3;
+    //shot0-3 is like num0-3, keeps track of which shot is being used
     private int shot0;
     private int shot1;
     private int shot2;
     private int shot3;
+    //a list of what number we are on for each typ of bullet; format: [int, int, int, int] 
+    //each position refers to the type of bullet
     private List<int> shotsTaken = new List<int>();
 
     // Use this for initialization
@@ -94,33 +93,6 @@ public class Spawn : MonoBehaviour {
                 allBullets[x][z] = tempBullet;
             }
         }
-        /*
-		for (int x = 0; x < maxEnemies; x++) {
-			int y = 0;
-			GameObject enemy = enemy0.gameObject;
-			GameObject tempEnemy = Instantiate (enemy, new Vector3 (10, 10, 0), new Quaternion ()) as GameObject;
-			tempEnemy.SetActive (false);
-			enemyList0[x] = tempEnemy;
-			y += 1;
-
-			enemy = enemy1.gameObject;
-			tempEnemy = Instantiate (enemy, new Vector3 (10, 10, 0), new Quaternion ()) as GameObject;
-			tempEnemy.gameObject.SetActive (false);
-			enemyList1[x] = tempEnemy;
-			y += 1;
-
-			enemy = enemy2.gameObject;
-			tempEnemy = Instantiate (enemy, new Vector3 (10, 10, 0), new Quaternion ()) as GameObject;
-			tempEnemy.gameObject.SetActive (false);
-			enemyList2[x] = tempEnemy;
-			y += 1;
-
-			enemy = enemy3.gameObject;
-			tempEnemy = Instantiate (enemy, new Vector3 (10, 10, 0), new Quaternion ()) as GameObject;
-			tempEnemy.gameObject.SetActive (false);
-			enemyList3[x] = tempEnemy;
-		}
-        */
 	}
 
     public GameObject[] allBull(int x)
@@ -181,7 +153,6 @@ public class Spawn : MonoBehaviour {
 			GameObject temp = enemyList0 [num0];
 			temp.transform.position = new Vector3(enemy0.startPosX, enemy0.startPosY, 0);
             temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
-            //temp.transform.localScale.Scale(new Vector3(2, 2, 1));
             temp.gameObject.SetActive (true);
 			num0 += 1;
             spawns0 += 1;

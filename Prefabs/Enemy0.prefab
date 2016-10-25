@@ -107,8 +107,7 @@ MonoBehaviour:
   startPosX: -4
   startPosY: 4
   yMaxRange: 5
-  direction: {x: 1, y: 0}
-  xVal: 1
+  direction: {x: 1, y: -1}
 --- !u!212 &212000011820708840
 SpriteRenderer:
   m_ObjectHideFlags: 1
