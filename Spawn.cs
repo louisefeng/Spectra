@@ -32,14 +32,14 @@ public class Spawn : MonoBehaviour {
 	public double delay1;
 	public double delay2;
 	public double delay3;
-    public double shootTime0;
+    /*public double shootTime0;
     public double shootTime1;
     public double shootTime2;
     public double shootTime3;
     private double shootingTime0;
     private double shootingTime1;
     private double shootingTime2;
-    private double shootingTime3;
+    private double shootingTime3;*/
     public double spawnTime0;
 	public double spawnTime1;
 	public double spawnTime2;
