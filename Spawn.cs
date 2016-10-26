@@ -6,7 +6,6 @@ public class Spawn : MonoBehaviour {
 	//public int[] total;
 	public int max;
     public int screenLimit;
-	private int maxEnemies = 20;
 	public movement enemy0;
     public enemyShoot bullet0;
 	public movement enemy1;
@@ -24,42 +23,24 @@ public class Spawn : MonoBehaviour {
     private static GameObject[] bulletList1 = new GameObject[200];
     private static GameObject[] bulletList2 = new GameObject[200];
     private static GameObject[] bulletList3 = new GameObject[200];
+
     private List<movement> enemyTypes = new List<movement>(); 
     private List<enemyShoot> bulletTypes = new List<enemyShoot>();
     private GameObject[][] allEnemies = new GameObject[][] { enemyList0, enemyList1, enemyList2, enemyList3 };
     private GameObject[][] allBullets = new GameObject[][] { bulletList0, bulletList1, bulletList2, bulletList3 };
 
-	public double delay0;
-	public double delay1;
-	public double delay2;
-	public double delay3;
-    public double spawnTime0;
-	public double spawnTime1;
-	public double spawnTime2;
-	public double spawnTime3;
-	private double nextTime0;
-	private double nextTime1;
-	private double nextTime2;
-	private double nextTime3;
+    public List<Vector2> movementDirection = new List<Vector2>(4);
+    private List<double> nextTime = new List<double>();
+    public List<float> speed = new List<float>();
+    public List<double> moveTime = new List<double>();
+    public List<double> shootingTime = new List<double>();
+    public List<Vector2> startingPos = new List<Vector2>();
+    public List<Vector2> maxPos = new List<Vector2>();
+    public List<double> delay = new List<double>();
+    public List<double> spawnTime = new List<double>();
 
-
-    //num0-3 is to keep track of which enemy ship has been used
-	private int num0;
-	private int num1;
-	private int num2;
-	private int num3;
-    //spawns0-3 is to keep track of total enemies that have been produced
-    private int spawns0;
-    private int spawns1;
-    private int spawns2;
-    private int spawns3;
-    //shot0-3 is like num0-3, keeps track of which shot is being used
-    private int shot0;
-    private int shot1;
-    private int shot2;
-    private int shot3;
-    //a list of what number we are on for each typ of bullet; format: [int, int, int, int] 
-    //each position refers to the type of bullet
+    private List<int> enemyNum = new List<int>();
+    private List<int> spawns = new List<int>();
     private List<int> shotsTaken = new List<int>();
 
     // Use this for initialization
@@ -72,12 +53,12 @@ public class Spawn : MonoBehaviour {
         bulletTypes.Add(bullet1);
         bulletTypes.Add(bullet2);
         bulletTypes.Add(bullet3);
-        shotsTaken.Add(shot0);
-        shotsTaken.Add(shot1);
-        shotsTaken.Add(shot2);
-        shotsTaken.Add(shot3);
         for (int x = 0; x < 4; x++)
         {
+            shotsTaken.Add(0);
+            nextTime.Add(0);
+            enemyNum.Add(0);
+            spawns.Add(0);
             GameObject bullet = bulletTypes[x].gameObject;
             GameObject enemy = enemyTypes[x].gameObject;
             for (int y = 0; y < allEnemies[x].Length; y++)
@@ -115,20 +96,7 @@ public class Spawn : MonoBehaviour {
     }
 
 	public void num(int x) {
-		switch(x) {
-		case 0:
-			num0 -= 1;
-			break;
-		case 1:
-			num1 -= 1;
-			break;
-		case 2:
-			num2 -= 1;
-			break;
-		case 3:
-			num3 -= 1;
-			break;
-		}
+        enemyNum[x] -= 1;
 	}
 
     public void decrementShot(int x)
@@ -148,43 +116,19 @@ public class Spawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > delay0 && Time.time > nextTime0 && spawns0 < max && num0 < screenLimit) {
-			nextTime0 = Time.time + spawnTime0;
-			GameObject temp = enemyList0 [num0];
-			temp.transform.position = new Vector3(enemy0.startPosX, enemy0.startPosY, 0);
-            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
-            temp.gameObject.SetActive (true);
-			num0 += 1;
-            spawns0 += 1;
-		}
-		if (Time.time > delay1 && Time.time > nextTime1 && spawns1 < max && num1 < screenLimit) {
-			nextTime1 = Time.time + spawnTime1;
-			GameObject temp = enemyList1 [num1];
-			temp.transform.position = new Vector3 (enemy1.startPosX, enemy1.startPosY, 0);
-            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
-            temp.gameObject.SetActive (true);
-			num1 += 1;
-            spawns1 += 1;
-		}
 
-		if (Time.time > delay2 && Time.time > nextTime2 && spawns2 < max && num2 < screenLimit) {
-			nextTime2 = Time.time + spawnTime2;
-			GameObject temp = enemyList2 [num2];
-			temp.transform.position = new Vector3 (enemy2.startPosX, enemy2.startPosY, 0);
-            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
-            temp.gameObject.SetActive (true);
-			num2 += 1;
-            spawns2 += 1;
-		}
-
-		if (Time.time > delay3 && Time.time > nextTime3 && spawns3 < max && num3 < screenLimit) {
-			nextTime3 = Time.time + spawnTime3;
-			GameObject temp = enemyList3 [num3];
-			temp.transform.position = new Vector3 (enemy3.startPosX, enemy3.startPosY, 0);
-            temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
-            temp.gameObject.SetActive (true);
-			num3 += 1;
-            spawns3 += 1;
-		}
+        for (int x = 0; x < 4; x++)
+        {
+            if (Time.time > delay[x] && Time.time > nextTime[x] && spawns[x] < max && enemyNum[x] < screenLimit)
+            {
+                nextTime[x] = Time.time + spawnTime[x];
+                GameObject temp = allEnemies[x][enemyNum[x]];
+                temp.transform.position = new Vector3(startingPos[x].x, startingPos[x].y, 0);
+                temp.GetComponent<movement>().setSpawnTime(temp.GetComponent<movement>().getRandomShootingTime());
+                temp.gameObject.SetActive(true);
+                enemyNum[x] += 1;
+                spawns[x] += 1;
+            }
+        }
 	}
 }

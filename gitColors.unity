@@ -102,6 +102,7 @@ GameObject:
   - 92: {fileID: 418317082}
   - 124: {fileID: 418317081}
   - 81: {fileID: 418317080}
+  - 82: {fileID: 418317085}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -177,6 +178,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &418317085
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418317079}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &633190558
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,14 +461,46 @@ MonoBehaviour:
   bullet2: {fileID: 114000011395138528, guid: a49e913db324a04478372679e1238bcd, type: 2}
   enemy3: {fileID: 114000010127580316, guid: 0478a0fc519a81e45baec988de5f8f66, type: 2}
   bullet3: {fileID: 114000013179179664, guid: 3e5937836aef3c34fbd0b98830cdc629, type: 2}
-  delay0: 1
-  delay1: 3
-  delay2: 5
-  delay3: 7
-  spawnTime0: 2
-  spawnTime1: 1
-  spawnTime2: 2
-  spawnTime3: 1
+  movementDirection:
+  - {x: 1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 1, y: 0}
+  speed:
+  - 2
+  - 2
+  - 2
+  - 2
+  moveTime:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  shootingTime:
+  - 1
+  - 1
+  - 1
+  - 1
+  startingPos:
+  - {x: -4, y: 4}
+  - {x: -4, y: 3}
+  - {x: -4, y: 2}
+  - {x: -4, y: 1}
+  maxPos:
+  - {x: 0, y: 5}
+  - {x: 0, y: 5}
+  - {x: 0, y: 5}
+  - {x: 0, y: 5}
+  delay:
+  - 1
+  - 1.5
+  - 2
+  - 3
+  spawnTime:
+  - 2
+  - 1
+  - 1
+  - 2
 --- !u!1 &1758540521
 GameObject:
   m_ObjectHideFlags: 0

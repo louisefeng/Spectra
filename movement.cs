@@ -3,33 +3,30 @@ using System.Collections;
 
 public class movement : MonoBehaviour {
 	
-	public float speed;
+	private float speed;
 	private Rigidbody2D move;
 
     //Each of these numbers it to help time every event that happens
 	private double nextTime;
 	private double spawnTime;
-	public double moveTime;
+	private double moveTime;
 	private double movingTime;
-    public double shootingTime;
+    private double shootingTime;
     private double shootTime;
 
-    private static int num0;
-    private static int num1;
-    private static int num2;
-    private static int num3;
+    //private static int num0;
+    //private static int num1;
+    //private static int num2;
+    //private static int num3;
 
 	public GameObject self;
 	private Collider2D selfCol;
 
     //position stuff
-	public float startPosX;
-	public float startPosY;
+    //private Vector2 startingPos;
 	private double yPos = 0;
-	private double xPos;
-	public double yMaxRange;
-
-	public Vector2 direction;
+    private double xPos;
+    private Vector2 maxRange;
 
     //used to determine if ship is moving left/right or up/down; yVal and xVal should only ever be -1 and 1
 	private float yVal = 1;
@@ -41,13 +38,19 @@ public class movement : MonoBehaviour {
 	private GameObject reference;
 	private Spawn spawnReference;
     private GameObject player;
+    private int myNum;
 
 	// Use this for initialization
 	void Start () {
 
 		move = GetComponent<Rigidbody2D> ();
 		selfCol = GetComponent<Collider2D> ();
-	
+        myNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
+        speed = spawnReference.speed[myNum];
+        moveTime = spawnReference.moveTime[myNum];
+        shootingTime = spawnReference.shootingTime[myNum];
+        //startingPos = spawnReference.startingPos[myNum];
+        maxRange = spawnReference.maxPos[myNum];
 	}
 
 	void Awake() {
@@ -71,20 +74,7 @@ public class movement : MonoBehaviour {
 			&& spriteRenderer.sortingLayerName == bulletSpriteRenderer.sortingLayerName
 		) {
 			spriteRenderer.gameObject.SetActive(false);
-			switch(spriteRenderer.sortingLayerName) {
-			case "0":
-				spawnReference.num(0);
-				break;
-			case "1":
-				spawnReference.num(1);
-				break;
-			case "2":
-				spawnReference.num(2);
-				break;
-			case "3":
-				spawnReference.num(3);
-				break;
-			}
+            spawnReference.num(myNum);
 		}
         if (col.gameObject.name == "Player") {
             /* for instant death
@@ -117,11 +107,12 @@ public class movement : MonoBehaviour {
 
 		if (Time.time > movingTime) {
 			movingTime = Time.time + moveTime;
-			Vector2 moving = new Vector2 (direction.x * xVal, direction.y * yVal);
+            Vector2 moving = spawnReference.movementDirection[myNum];
+			moving = new Vector2 (moving.x * xVal, moving.y * yVal);
 			move.velocity = moving * speed;
-			yPos += Mathf.Abs (direction.y);
+			yPos += Mathf.Abs (spawnReference.movementDirection[myNum].y);
 
-			if (yPos > yMaxRange - 1) {
+			if (yPos > maxRange.y - 1) {
 				yPos = 0;
 				yVal = yVal * -1;
 			}
@@ -130,54 +121,17 @@ public class movement : MonoBehaviour {
         if (Time.time - spawnTime > shootTime)
         {
             shootTime = Time.time + (Random.value * shootingTime);
-            int importantNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
-            GameObject temp = reference.GetComponent<Spawn>().allBull(importantNum)[spawnReference.returnShot(importantNum)].gameObject;
+            GameObject temp = reference.GetComponent<Spawn>().allBull(myNum)[spawnReference.returnShot(myNum)].gameObject;
             temp.transform.position = new Vector3(GetComponent<Transform>().position.x,
                 GetComponent<Transform>().position.y, 0);
             temp.gameObject.SetActive(true);
-            spawnReference.incrementShot(importantNum);
-            /*switch (GetComponent<SpriteRenderer>().sortingLayerName)
-            {
-                case "0":
-                    GameObject temp = reference.GetComponent<Spawn>().allBull(0)[spawnReference.returnShot(0)].gameObject;
-                    temp.transform.position = new Vector3(GetComponent<Transform>().position.x,
-                        GetComponent<Transform>().position.y, 0);
-                    temp.gameObject.SetActive(true);
-                    spawnReference.incrementShot(0);
-                    break;
-                case "1":
-                    temp = reference.GetComponent<Spawn>().allBull(1)[spawnReference.returnShot(1)].gameObject;
-                    Instantiate(temp, new Vector3(GetComponent<Transform>().position.x, 
-                        GetComponent<Transform>().position.y, 0), new Quaternion());
-                    temp.gameObject.SetActive(true);
-                    spawnReference.incrementShot(1);
-                    print("blue bullet");
-                    break;
-                case "2":
-                    temp = reference.GetComponent<Spawn>().allBull(2)[spawnReference.returnShot(2)].gameObject;
-                    Instantiate(temp, new Vector3(GetComponent<Transform>().position.x, 
-                        GetComponent<Transform>().position.y, 0), new Quaternion());
-                    temp.gameObject.SetActive(true);
-                    spawnReference.incrementShot(2);
-                    print("green bullet");
-                    break;
-                case "3":
-                    temp = reference.GetComponent<Spawn>().allBull(3)[spawnReference.returnShot(3)].gameObject;
-                    Instantiate(temp, new Vector3(GetComponent<Transform>().position.x, 
-                        GetComponent<Transform>().position.y, 0), new Quaternion());
-                    temp.gameObject.SetActive(true);
-                    spawnReference.incrementShot(3);
-                    print("yellow bullet");
-                    break;
-
-            }*/
+            spawnReference.incrementShot(myNum);
         }
 
         if (self.transform.position.y < -4) {
             self.SetActive(false);
             player.GetComponent<Control>().worldHealth -= 1;
-            int importantNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
-            spawnReference.num(importantNum);
+            spawnReference.num(myNum);
         }
 	}
 
