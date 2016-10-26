@@ -451,16 +451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012c9d7f1e92e8e48b81f31461083d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 0a000000000000000000000000000000
-  screenLimit: 5
-  enemy0: {fileID: 114000013275978952, guid: b1d3bf5a19971ac45afd5ff3f15da165, type: 2}
-  bullet0: {fileID: 114000013901272192, guid: eff3bfc5f42e6b64595889ba8b5d1142, type: 2}
-  enemy1: {fileID: 114000012035678362, guid: f71d9b0cffa05fe4b931db0bd2fbe0f6, type: 2}
-  bullet1: {fileID: 114000013785500524, guid: 8ced21f8ab47d7d4fa64edc0e6f55fe5, type: 2}
-  enemy2: {fileID: 114000014272391886, guid: 5f16e90b6af6fb94e9450a8d112268bb, type: 2}
-  bullet2: {fileID: 114000011395138528, guid: a49e913db324a04478372679e1238bcd, type: 2}
-  enemy3: {fileID: 114000010127580316, guid: 0478a0fc519a81e45baec988de5f8f66, type: 2}
-  bullet3: {fileID: 114000013179179664, guid: 3e5937836aef3c34fbd0b98830cdc629, type: 2}
+  max: 05000000000000000000000000000000
+  screenLimit: 05000000050000000500000005000000
   movementDirection:
   - {x: 1, y: 0}
   - {x: 1, y: 0}
@@ -478,9 +470,14 @@ MonoBehaviour:
   - 0.5
   shootingTime:
   - 1
+  - 2
+  - 2
+  - 2
+  bulletSpeed:
   - 1
-  - 1
-  - 1
+  - 2
+  - 2
+  - 2
   startingPos:
   - {x: -4, y: 4}
   - {x: -4, y: 3}
@@ -501,6 +498,14 @@ MonoBehaviour:
   - 1
   - 1
   - 2
+  enemy0: {fileID: 114000013275978952, guid: b1d3bf5a19971ac45afd5ff3f15da165, type: 2}
+  bullet0: {fileID: 114000013901272192, guid: eff3bfc5f42e6b64595889ba8b5d1142, type: 2}
+  enemy1: {fileID: 114000012035678362, guid: f71d9b0cffa05fe4b931db0bd2fbe0f6, type: 2}
+  bullet1: {fileID: 114000013785500524, guid: 8ced21f8ab47d7d4fa64edc0e6f55fe5, type: 2}
+  enemy2: {fileID: 114000014272391886, guid: 5f16e90b6af6fb94e9450a8d112268bb, type: 2}
+  bullet2: {fileID: 114000011395138528, guid: a49e913db324a04478372679e1238bcd, type: 2}
+  enemy3: {fileID: 114000010127580316, guid: 0478a0fc519a81e45baec988de5f8f66, type: 2}
+  bullet3: {fileID: 114000013179179664, guid: 3e5937836aef3c34fbd0b98830cdc629, type: 2}
 --- !u!1 &1758540521
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,12 +615,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  switchTime: 0.5
   sp1: {fileID: 21300000, guid: cb85daedffe94e643b4cf47348868a88, type: 3}
   sp2: {fileID: 21300000, guid: bc904c4b4e0b9344ab877682a63f8188, type: 3}
   sp3: {fileID: 21300000, guid: 5898cfac0c7ce824ca822efcf964bd8a, type: 3}
   sp4: {fileID: 21300000, guid: 7215df0268c5cb040b3db268eb12d7f1, type: 3}
-  shipNum: 0
 --- !u!114 &1758540527
 MonoBehaviour:
   m_ObjectHideFlags: 0

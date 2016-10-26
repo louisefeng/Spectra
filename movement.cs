@@ -72,6 +72,7 @@ public class movement : MonoBehaviour {
 		if (col.gameObject.name == "Bullet(Clone)" 
 			&& spriteRenderer.sortingLayerName == bulletSpriteRenderer.sortingLayerName
 		) {
+            spawnReference.addEnemy(myNum, self);
 			spriteRenderer.gameObject.SetActive(false);
             spawnReference.num(myNum);
 		}
@@ -95,7 +96,8 @@ public class movement : MonoBehaviour {
     public double getRandomShootingTime()
     {
         Random temp = new Random();
-        return shootingTime * Random.value;
+        return shootingTime;
+        //return shootingTime * Random.value;
     }
 
 
@@ -119,12 +121,14 @@ public class movement : MonoBehaviour {
 
         if (Time.time - spawnTime > shootTime)
         {
-            shootTime = Time.time + (Random.value * shootingTime);
-            GameObject temp = reference.GetComponent<Spawn>().allBull(myNum)[spawnReference.returnShot(myNum)].gameObject;
+            shootTime = Time.time + (shootingTime);
+            int last = spawnReference.allBull(myNum).Count - 1;
+            GameObject temp = reference.GetComponent<Spawn>().allBull(myNum)[last].gameObject;
+            spawnReference.removeBullet(myNum);
             temp.transform.position = new Vector3(GetComponent<Transform>().position.x,
                 GetComponent<Transform>().position.y, 0);
             temp.gameObject.SetActive(true);
-            spawnReference.incrementShot(myNum);
+            //spawnReference.incrementShot(myNum);
         }
 
         if (self.transform.position.y < -4) {

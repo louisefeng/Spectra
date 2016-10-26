@@ -3,9 +3,10 @@ using System.Collections;
 
 public class enemyShoot : MonoBehaviour
 {
-    public float speed;
+    private float speed;
     public GameObject self;
     private Rigidbody2D move;
+    private int myNum;
 
     private GameObject player;
     private Spawn spawner;
@@ -13,7 +14,8 @@ public class enemyShoot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+        myNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
+        speed = spawner.bulletSpeed[myNum];
     }
 
     void Awake()
@@ -28,9 +30,9 @@ public class enemyShoot : MonoBehaviour
         if (col.gameObject.name == "Player" && player.GetComponent<SpriteRenderer>().sortingLayerName.Equals(GetComponent<SpriteRenderer>().sortingLayerName))
         {
             player.GetComponent<Control>().beenHit();
+            spawner.addBullet(myNum, self);
             self.SetActive(false);
-            int importantNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
-            spawner.decrementShot(importantNum);
+            //spawner.decrementShot(myNum);
         }
     }
 
@@ -43,8 +45,8 @@ public class enemyShoot : MonoBehaviour
         if (self.transform.position.y < -4)
         {
             self.SetActive(false);
-            int importantNum = bulletNum(GetComponent<SpriteRenderer>().sortingLayerName);
-            spawner.decrementShot(importantNum);
+            spawner.addBullet(myNum, self);
+            //spawner.decrementShot(myNum);
         }
     }
 
