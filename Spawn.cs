@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Spawn : MonoBehaviour {
 	//public int[] total;
-	public int max;
+    public List<int> max = new List<int>();
     public int screenLimit;
 	public movement enemy0;
     public enemyShoot bullet0;
@@ -119,7 +119,7 @@ public class Spawn : MonoBehaviour {
 
         for (int x = 0; x < 4; x++)
         {
-            if (Time.time > delay[x] && Time.time > nextTime[x] && spawns[x] < max && enemyNum[x] < screenLimit)
+            if (Time.time > delay[x] && Time.time > nextTime[x] && spawns[x] < max[x] && enemyNum[x] < screenLimit)
             {
                 nextTime[x] = Time.time + spawnTime[x];
                 GameObject temp = allEnemies[x][enemyNum[x]];

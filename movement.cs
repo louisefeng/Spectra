@@ -23,7 +23,6 @@ public class movement : MonoBehaviour {
 	private Collider2D selfCol;
 
     //position stuff
-    //private Vector2 startingPos;
 	private double yPos = 0;
     private double xPos;
     private Vector2 maxRange;

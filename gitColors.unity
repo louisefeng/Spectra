@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012c9d7f1e92e8e48b81f31461083d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 10
+  max: 0a000000000000000000000000000000
   screenLimit: 5
   enemy0: {fileID: 114000013275978952, guid: b1d3bf5a19971ac45afd5ff3f15da165, type: 2}
   bullet0: {fileID: 114000013901272192, guid: eff3bfc5f42e6b64595889ba8b5d1142, type: 2}
