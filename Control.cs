@@ -21,7 +21,9 @@ public class Control : MonoBehaviour {
 	public Sprite sp2;
 	public Sprite sp3;
 	public Sprite sp4;
-	private int shipNum;
+    private Sprite[] allSprites = new Sprite[4];
+    private string[] allNames = new string[4];
+	private int myNum;
 	private SpriteRenderer spriteRenderer;
 
     private GameObject enemySpawns;
@@ -30,9 +32,17 @@ public class Control : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		shipNum = 0;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
-		spriteRenderer.sprite = sp1;
+        myNum = bulletNum(spriteRenderer.sortingLayerName);
+        allSprites[0] = sp1;
+        allSprites[1] = sp2;
+        allSprites[2] = sp3;
+        allSprites[3] = sp4;
+        allNames[0] = "0";
+        allNames[1] = "1";
+        allNames[2] = "2";
+        allNames[3] = "3";
+        spriteRenderer.sprite = sp1;
 		move = GetComponent<Rigidbody2D> ();
 
 	}
@@ -81,25 +91,43 @@ public class Control : MonoBehaviour {
 
 		if (Input.GetButton("colorChange") && Time.time > shipNextTime) {
 			shipNextTime = Time.time + switchTime;
-			shipNum = (shipNum + 1) % 4;
-			switch (shipNum) {
-			case 0:
-				spriteRenderer.sprite = sp1;
-				spriteRenderer.sortingLayerName = "0";
-				break;
-			case 1:
-				spriteRenderer.sprite = sp2;
-				spriteRenderer.sortingLayerName = "1";
-				break;
-			case 2:
-				spriteRenderer.sprite = sp3;
-				spriteRenderer.sortingLayerName = "2";
-				break;
-			case 3:
-				spriteRenderer.sprite = sp4;
-				spriteRenderer.sortingLayerName = "3";
-				break;
-			}
+            myNum = bulletNum(spriteRenderer.sortingLayerName);
+            spriteRenderer.sprite = allSprites[myNum + 1];
+            spriteRenderer.sortingLayerName = allNames[myNum + 1];
+			//switch (myNum) {
+			//case 0:
+			//	spriteRenderer.sprite = sp1;
+			//	spriteRenderer.sortingLayerName = "0";
+			//	break;
+			//case 1:
+			//	spriteRenderer.sprite = sp2;
+			//	spriteRenderer.sortingLayerName = "1";
+			//	break;
+			//case 2:
+			//	spriteRenderer.sprite = sp3;
+			//	spriteRenderer.sortingLayerName = "2";
+			//	break;
+			//case 3:
+			//	spriteRenderer.sprite = sp4;
+			//	spriteRenderer.sortingLayerName = "3";
+			//	break;
+			//}
 		}
 	}
+
+    int bulletNum(string bul)
+    {
+        switch (bul)
+        {
+            case "0":
+                return 0;
+            case "1":
+                return 1;
+            case "2":
+                return 2;
+            case "3":
+                return 3;
+        }
+        return 0;
+    }
 }
