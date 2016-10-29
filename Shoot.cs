@@ -5,19 +5,22 @@ public class Shoot : MonoBehaviour {
 	public float speed;
 	private Rigidbody2D move;
 	public static GameObject collisionItem;
-	public double switchTime;
+	private double switchTime;
 	private double nextTime;
 	public Sprite sp1;
 	public Sprite sp2;
 	public Sprite sp3;
 	public Sprite sp4;
-	public int shipNum;
+	private int shipNum = 0;
 	private SpriteRenderer spriteRenderer;
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		move = GetComponent<Rigidbody2D> ();
+        player = GameObject.Find("Player");
+        switchTime = player.GetComponent<Control>().switchTime;
 	}
 	
 	// Update is called once per frame

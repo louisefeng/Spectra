@@ -451,13 +451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012c9d7f1e92e8e48b81f31461083d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 05000000000000000000000000000000
+  max: 0a0000000a0000000a0000000a000000
   screenLimit: 05000000050000000500000005000000
   movementDirection:
-  - {x: 1, y: 0}
-  - {x: 1, y: 0}
-  - {x: 1, y: 0}
-  - {x: 1, y: 0}
+  - {x: 1, y: -0.5}
+  - {x: 1, y: -0.25}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0.5}
   speed:
   - 2
   - 2
@@ -469,7 +469,7 @@ MonoBehaviour:
   - 0.5
   - 0.5
   shootingTime:
-  - 1
+  - 2
   - 2
   - 2
   - 2

@@ -4,6 +4,7 @@ using System.Collections;
 public class Control : MonoBehaviour {
 
 	public float speed;
+    private static int lives = 3;
 
     public int health;
     public int worldHealth;
@@ -50,6 +51,7 @@ public class Control : MonoBehaviour {
 	void Update () {
 
         if (health <= 0 || worldHealth <= 0) {
+            lives -= 1;
             /*enemySpawner = enemySpawns.GetComponent<Spawn>();
             for (int x = 0; x < 4; x++)
             {
@@ -60,6 +62,12 @@ public class Control : MonoBehaviour {
             }
             //trigger game over
             */
+        }
+
+        if (lives <= 0)
+        {
+            //trigger game over
+            //end this process
         }
 		
 		float moveHorizontal = Input.GetAxis ("Horizontal");
