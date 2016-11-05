@@ -92,8 +92,8 @@ public class Control : MonoBehaviour {
 		if (Input.GetButton("colorChange") && Time.time > shipNextTime) {
 			shipNextTime = Time.time + switchTime;
             myNum = bulletNum(spriteRenderer.sortingLayerName);
-            spriteRenderer.sprite = allSprites[myNum + 1];
-            spriteRenderer.sortingLayerName = allNames[myNum + 1];
+            spriteRenderer.sprite = allSprites[(myNum + 1) % 4];
+            spriteRenderer.sortingLayerName = allNames[(myNum + 1) % 4];
 			//switch (myNum) {
 			//case 0:
 			//	spriteRenderer.sprite = sp1;
