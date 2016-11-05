@@ -56,6 +56,8 @@ public class Spawn : MonoBehaviour {
     public movement enemy3;
     public enemyShoot bullet3;
 
+    int totalEnemies;
+    int killedEnemies;
     // Use this for initialization
     void Start (){
         enemyTypes.Add(enemy0);
@@ -68,6 +70,7 @@ public class Spawn : MonoBehaviour {
         bulletTypes.Add(bullet3);
         for (int x = 0; x < 4; x++)
         {
+            totalEnemies += max[x];
             shotsTaken.Add(0);
             nextTime.Add(0);
             enemyNum.Add(0);
@@ -89,58 +92,6 @@ public class Spawn : MonoBehaviour {
         }
     }
 
-    public List<GameObject> allBull(int x) {
-        if (x >= 0 && x <= 3) {
-            return allBullets[x];
-        }
-        return null;
-    }
-
-
-    public List<GameObject> allEnem(int x) {
-        if (x >= 0 && x <= 3)
-        {
-            return allEnemies[x];
-        }
-        return null;
-    }
-
-	public void num(int x) {
-        enemyNum[x] -= 1;
-	}
-
-    public void decrementShot(int x) {
-        shotsTaken[x] -= 1;
-    }
-
-    public void incrementShot(int x) {
-        shotsTaken[x] += 1;
-    }
-
-    public int returnShot(int x) {
-        return shotsTaken[x];
-    }
-
-    public void removeBullet(int type)
-    {
-        allBullets[type].RemoveAt(allBullets[type].Count - 1);
-    }
-
-    public void addBullet(int type, GameObject bullet)
-    {
-        allBullets[type].Add(bullet);
-    }
-	
-    public void removeEnemy(int type, GameObject enemy)
-    {
-        allEnemies[type].RemoveAt(allEnemies[type].Count - 1);
-    }
-
-    public void addEnemy(int type, GameObject enemy)
-    {
-        allEnemies[type].Add(enemy);
-    }
-
 	// Update is called once per frame
 	void Update () {
         for (int x = 0; x < 4; x++)
@@ -158,5 +109,69 @@ public class Spawn : MonoBehaviour {
                 spawns[x] += 1;
             }
         }
-	}
+        if (killedEnemies == totalEnemies)
+        {
+            //level won
+        }
+
+    }
+    public List<GameObject> allBull(int x)
+    {
+        if (x >= 0 && x <= 3)
+        {
+            return allBullets[x];
+        }
+        return null;
+    }
+
+
+    public List<GameObject> allEnem(int x)
+    {
+        if (x >= 0 && x <= 3)
+        {
+            return allEnemies[x];
+        }
+        return null;
+    }
+
+    public void num(int x)
+    {
+        enemyNum[x] -= 1;
+    }
+
+    public void decrementShot(int x)
+    {
+        shotsTaken[x] -= 1;
+    }
+
+    public void incrementShot(int x)
+    {
+        shotsTaken[x] += 1;
+    }
+
+    public int returnShot(int x)
+    {
+        return shotsTaken[x];
+    }
+
+    public void removeBullet(int type)
+    {
+        allBullets[type].RemoveAt(allBullets[type].Count - 1);
+    }
+
+    public void addBullet(int type, GameObject bullet)
+    {
+        allBullets[type].Add(bullet);
+    }
+
+    public void removeEnemy(int type, GameObject enemy)
+    {
+        allEnemies[type].RemoveAt(allEnemies[type].Count - 1);
+    }
+
+    public void addEnemy(int type, GameObject enemy)
+    {
+        killedEnemies += 1;
+        allEnemies[type].Add(enemy);
+    }
 }

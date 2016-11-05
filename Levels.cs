@@ -8,15 +8,16 @@ public class Levels : MonoBehaviour {
 
     public int one;
     public int two;
+    static bool first = true;
     bool menu;
     bool levelSelect;
     bool options;
     int menuPos; //0 is start, 1 is options, 2 is exit
-    int level = 1; //number of level selected
+    static int level = 0; //number of level selected
     int optionsPos;
     static bool[] availableLevels = new bool[10]; //10 is arbitrary last level
 
-    int levelFactor = 0; //factor of which set of 5 is being viewed
+    static int levelFactor = 0; //factor of which set of 5 is being viewed
 
     List<GameObject> buttons = new List<GameObject>();
     List<string> buttonNames = new List<string>() { "Button0", "Button1", "Button2", "Button3", "Button4" };
@@ -24,17 +25,27 @@ public class Levels : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        menuPos = 0;
-        menu = true;
-        levelSelect = false;
-        options = false;
+        if (first)
+        {
+            menuPos = 0;
+            menu = true;
+            levelSelect = false;
+            options = false;
 
-        for (int x = 0; x < 5; x++)
-        {            
-            GameObject temp = GameObject.Find(buttonNames[x]);
-            buttons.Add(temp);
-            buttons[x].SetActive(false);
+            for (int x = 0; x < 5; x++)
+            {
+                GameObject temp = GameObject.Find(buttonNames[x]);
+                buttons.Add(temp);
+                buttons[x].SetActive(false);
+            }
+            first = false;
+        } else
+        {
+            menu = false;
+            levelSelect = true;
+            options = false;
         }
+
         
         availableLevels[1] = true;
     }
@@ -179,8 +190,15 @@ public class Levels : MonoBehaviour {
             }
             if (Input.GetKeyUp("z"))
             {
-                SceneManager.GetSceneByName(level.ToString());
-                gameObject.SetActive(false);
+                if (level == 0)
+                {
+                    SceneManager.LoadSceneAsync("Tutorial", LoadSceneMode.Single);
+                }
+                else
+                {
+                    SceneManager.LoadSceneAsync(level.ToString(), LoadSceneMode.Single);
+                }
+                gameObject.SetActive(false); //change this
             }
             if (Input.GetKeyUp("x"))
             {
